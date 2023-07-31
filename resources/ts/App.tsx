@@ -7,8 +7,8 @@ import TodoProvider from "./contexts/TodoContext";
 export default function App() {
     return (
         <Container>
-            <Stack gap={3} className="col-md-6 mx-auto">
-                <h1 className="text-center mt-5">ToDo</h1>
+            <Stack gap={3} className="col-md-8 mx-auto">
+                <h1 className="text-center mt-5">To Do</h1>
 
                 <TodoProvider>
                     <AddTodo />

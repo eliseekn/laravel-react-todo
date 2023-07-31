@@ -1,22 +1,20 @@
-import { TodoList, TodoType, TodoAction } from "../interfaces/ index";
+import { TodoType, TodoAction } from "../interfaces/ index";
 
 export default function TodoReducer(
-    state: TodoList,
+    state: TodoType[],
     action: TodoAction,
-): TodoList {
+): TodoType[] {
     switch (action.type) {
         case "init":
             return action.payload;
         case "add":
-            let data: TodoType[] = state.data
-
-            return [{: action.payload.data, ...state.data }];
+            return [action.payload, ...state];
         case "delete":
-            return state.data.filter(
-                (todo: TodoType) => todo.id !== action.payload.data.id,
+            return state.filter(
+                (todo: TodoType) => todo.id !== action.payload.id,
             );
         case "update":
-            state = state.map((todo: TodoList) => {
+            state = state.map((todo: TodoType) => {
                 if (todo.id === action.payload.id) {
                     return { ...todo, completed: !todo.completed };
                 }
@@ -24,13 +22,13 @@ export default function TodoReducer(
             });
 
             state.sort(
-                (x: TodoList, y: TodoList) =>
+                (x: TodoType, y: TodoType) =>
                     Number(x.completed!) - Number(y.completed!),
             );
 
             return state;
         case "edit":
-            return state.map((todo: TodoList) => {
+            return state.map((todo: TodoType) => {
                 if (todo.id === action.payload.id) {
                     return { ...todo, description: todo.description };
                 }

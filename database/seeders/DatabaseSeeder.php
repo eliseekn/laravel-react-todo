@@ -14,6 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Todo::factory()->count(50)->create();
+        Todo::factory()->count(10)->create();
     }
 }

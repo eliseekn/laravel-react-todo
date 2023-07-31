@@ -1,8 +1,21 @@
 {
-    "name": "laravel/laravel",
+    "name": "eliseken/laravel-react-monolith",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "description": "Laravel and React monolith application example",
+    "keywords": [
+        "laravel",
+        "framework",
+        "react",
+        "monolith"
+    ],
+    "authors": [
+        {
+            "name": "Elisée K. N'Guessan",
+            "email": "eliseekn@gmail.com",
+            "homepage": "https://eliseekn.netlify.app",
+            "role": "Developer"
+        }
+    ],
     "license": "MIT",
     "require": {
         "php": "^8.1",

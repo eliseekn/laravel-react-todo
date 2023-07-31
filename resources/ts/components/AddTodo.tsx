@@ -1,22 +1,35 @@
 import { React, useContext, useRef } from "react";
 import { Stack, Form, Button } from "react-bootstrap";
 import { TodoContext } from "../contexts/TodoContext";
+import { TodoType } from "../interfaces/ index";
 
 export default function AddTodo() {
     const inputRef = useRef<HTMLInputElement>(null);
-    const { state, dispatch } = useContext(TodoContext);
+    const { dispatch } = useContext(TodoContext);
 
     const handleAddTodo = (): void => {
-        dispatch({
-            type: "add",
-            payload: {
-                id: state.length + 1,
-                description: inputRef.current!.value,
-                completed: false,
-            },
-        });
+        const data: TodoType = {
+            description: inputRef.current!.value,
+            completed: false,
+        };
 
-        inputRef.current!.value = "";
+        fetch("http://127.0.0.1:8000/api/todos", {
+            method: "post",
+            headers: {
+                Accept: "application/json",
+                ContentType: "application/json",
+            },
+            body: JSON.stringify(data),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                dispatch({
+                    type: "add",
+                    payload: data,
+                });
+
+                inputRef.current!.value = "";
+            });
     };
 
     return (

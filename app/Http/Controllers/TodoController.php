@@ -29,6 +29,7 @@ class TodoController extends Controller
 
     public function store(Request $request): JsonResponse
     {
+        dd($request->all());
         $todo = Todo::factory()->create($request->only(['description', 'completed']));
         return response()->json($todo);
     }

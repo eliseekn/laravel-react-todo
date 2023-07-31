@@ -13,7 +13,7 @@ export const TodoContext = createContext<{
     state: TodoType[];
     dispatch: Dispatch<TodoAction>;
 }>({
-    state: [],
+    state: [] as TodoType[],
     dispatch: () => undefined,
 });
 
