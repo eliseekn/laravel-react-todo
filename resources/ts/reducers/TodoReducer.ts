@@ -6,7 +6,14 @@ export default function TodoReducer(
 ): TodoType[] {
     switch (action.type) {
         case "init":
-            return action.payload;
+            state = action.payload as TodoType[];
+
+            state.sort(
+                (x: TodoType, y: TodoType) =>
+                    Number(x.completed!) - Number(y.completed!),
+            );
+
+            return state;
         case "add":
             return [action.payload, ...state];
         case "delete":

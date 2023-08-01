@@ -1,3 +1,3 @@
-# Laravel - React - Monolith
+# laravel-react-todo
 
-Laravel and React monolith application example
+A pratical example of a ToDo monolith application with Laravel (API) and React

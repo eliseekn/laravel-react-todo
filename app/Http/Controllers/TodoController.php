@@ -12,25 +12,26 @@ class TodoController extends Controller
     public function index(): TodoCollection
     {
         return new TodoCollection(
-            Todo::query()->latest()->paginate()
+            Todo::query()->latest()->get()
         );
-    }
-
-    public function show(Todo $todo): JsonResponse
-    {
-        return response()->json($todo);
     }
 
     public function update(Request $request, Todo $todo): JsonResponse
     {
-        $todo->update($request->only(['description', 'completed']));
+        $data = $request->validate([
+            'description' => ['sometimes', 'required'],
+            'completed' => ['sometimes', 'required']
+        ]);
+
+        $todo->update($data);
         return response()->json($todo);
     }
 
     public function store(Request $request): JsonResponse
     {
-        dd($request->all());
-        $todo = Todo::factory()->create($request->only(['description', 'completed']));
+        $data = $request->validate(['description' => 'required']);
+
+        $todo = Todo::factory()->create($data);
         return response()->json($todo);
     }
 
@@ -39,7 +40,7 @@ class TodoController extends Controller
         $todo->delete();
 
         return new TodoCollection(
-            Todo::query()->latest()->paginate()
+            Todo::query()->latest()->get()
         );
     }
 }

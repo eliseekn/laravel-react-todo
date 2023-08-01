@@ -1,12 +1,13 @@
 {
-    "name": "eliseken/laravel-react-monolith",
+    "name": "eliseken/laravel-react-todo",
     "type": "project",
-    "description": "Laravel and React monolith application example",
+    "description": "A pratical example of a ToDo monolith application with Laravel (API) and React",
     "keywords": [
         "laravel",
         "framework",
         "react",
-        "monolith"
+        "monolith",
+        "todo"
     ],
     "authors": [
         {
