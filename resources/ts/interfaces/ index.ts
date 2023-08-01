@@ -6,7 +6,7 @@ export type TodoType = {
     updated_at?: string;
 };
 
-export type TodoAction = {
+export type TodoActionType = {
     type: "init" | "add" | "delete" | "update" | "edit";
     payload: TodoType;
 };

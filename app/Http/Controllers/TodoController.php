@@ -2,29 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\TodoCollection;
 use App\Models\Todo;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class TodoController extends Controller
 {
-    public function index(): TodoCollection
+    public function index(): JsonResponse
     {
-        return new TodoCollection(
+        return response()->json(
             Todo::query()->latest()->get()
         );
-    }
-
-    public function update(Request $request, Todo $todo): JsonResponse
-    {
-        $data = $request->validate([
-            'description' => ['sometimes', 'required'],
-            'completed' => ['sometimes', 'required']
-        ]);
-
-        $todo->update($data);
-        return response()->json($todo);
     }
 
     public function store(Request $request): JsonResponse
@@ -35,11 +23,23 @@ class TodoController extends Controller
         return response()->json($todo);
     }
 
-    public function destroy(Todo $todo): TodoCollection
+    public function update(Request $request, Todo $todo): JsonResponse
+    {
+        $data = $request->validate([
+            'description' => ['sometimes', 'required'],
+            'completed' => ['sometimes', 'required']
+        ]);
+
+        $data['updated_at'] = now();
+        $todo->update($data);
+        return response()->json($todo);
+    }
+
+    public function destroy(Todo $todo): JsonResponse
     {
         $todo->delete();
 
-        return new TodoCollection(
+        return response()->json(
             Todo::query()->latest()->get()
         );
     }

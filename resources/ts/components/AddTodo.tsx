@@ -1,4 +1,4 @@
-import { React, useContext, useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Stack, Form, Button, Spinner } from "react-bootstrap";
 import { TodoContext } from "../contexts/TodoContext";
 
@@ -12,7 +12,7 @@ export default function AddTodo() {
 
         setLoading(true)
 
-        const res = await fetch("http://127.0.0.1:8000/api/todos", {
+        const res = await fetch("http://localhost:8000/api/todos", {
             method: "post",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ description: inputRef.current!.value }),

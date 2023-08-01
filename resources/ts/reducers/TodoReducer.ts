@@ -1,8 +1,8 @@
-import { TodoType, TodoAction } from "../interfaces/ index";
+import { TodoType, TodoActionType } from "../interfaces/ index";
 
 export default function TodoReducer(
     state: TodoType[],
-    action: TodoAction,
+    action: TodoActionType,
 ): TodoType[] {
     switch (action.type) {
         case "init":
